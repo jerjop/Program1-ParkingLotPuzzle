@@ -15,49 +15,41 @@ public class TheMain {
         // read all the puzzles in file.  Only the first few are solvable without additional strategies
         Puzzle[] puzzles = Puzzle.readPuzzlesFromFile("jamsAll.txt");
         //int num_puzzles = puzzles.length;
-        int num_puzzles = 1;
+        int num_puzzles = 6;
 
         boolean doPrint = true;
         // solve each of the first six puzzles.  The others will likely take too long
         for (int i = 0; i < num_puzzles; i++) {
-
-
-            System.out.println();
-
-//            Queue<Node> q = new LinkedList<>();
-//            Node initial = puzzles[i].getInitNode();
-//
-//            if (initial.isGoal()) {
-//                puzzles[i].solve(doPrint, initial);
-//            }
-//
-//            q.offer(initial);
-//            Node[] moves = initial.expand();
-//            for (Node move : moves) {
-//                boolean matches = false;
-//                for (Node check : q) {
-//                    if (move.equals(check)) {
-//                        matches = true;
-//                        break;
-//                    }
-//                }
-//
-//                if (matches) {
-//                    continue;
-//                }
-//
-//                if (move.isGoal()) {
-//                    puzzles[i].solve(doPrint, move);
-//                }
-//
-//                q.offer(move);
-//            }
-//
-//            System.out.println(q);
-
-
-//            puzzles[i].solve(doPrint);
+            Node initial = puzzles[i].getInitNode();
+//            Node solution = search(initial);
+            puzzles[i].solve(doPrint, search(initial));
         }
     }
 
+    public static Node search(Node initial){
+        Queue<Node> queue = new LinkedList<>();
+        queue.offer(initial);
+
+        while(!queue.isEmpty()){
+            Node current = queue.remove();
+            if (current.isGoal()) {
+                return current;
+            }
+
+            Node[] children = current.expand();
+            for (Node child : children) {
+                boolean duplicate = false;
+                for (Node check : queue) {
+                    if (child.equals(check)) {
+                        duplicate = true;
+                        break;
+                    }
+                }
+                if (!duplicate) {
+                    queue.offer(child);
+                }
+            }
+        }
+        return null;
+    }
 }

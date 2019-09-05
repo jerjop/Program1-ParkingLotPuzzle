@@ -221,12 +221,9 @@ public class Puzzle {
         System.out.println("========================");
         System.out.println(initNode.toString());
 
-        //...
-//        Node solution=null;
         System.out.print("\n\nSOLUTION  of Depth " + solution.getDepth());
         //System.out.println(" Total Nodes Expanded " + allNodes.size() + "\n");
         printSolution(solution);
-
     }
 
 
@@ -240,7 +237,7 @@ public class Puzzle {
             return;
         }
         printSolution(n.getParent());
-        System.out.println("Move " + n.toString());
+        System.out.println("\nMove " + n.toString());
     }
 
     private static class CarRec {
