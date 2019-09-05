@@ -217,12 +217,12 @@ public class Puzzle {
         return initNode;
     }
 
-    public void solve(boolean doPrint) {
+    public void solve(boolean doPrint, Node solution) {
         System.out.println("========================");
         System.out.println(initNode.toString());
 
         //...
-        Node solution=null;
+//        Node solution=null;
         System.out.print("\n\nSOLUTION  of Depth " + solution.getDepth());
         //System.out.println(" Total Nodes Expanded " + allNodes.size() + "\n");
         printSolution(solution);
