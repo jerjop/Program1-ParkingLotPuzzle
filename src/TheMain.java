@@ -21,18 +21,23 @@ public class TheMain {
         // solve each of the first six puzzles.  The others will likely take too long
         for (int i = 0; i < num_puzzles; i++) {
             Node initial = puzzles[i].getInitNode();
-//            Node solution = search(initial);
-            puzzles[i].solve(doPrint, search(initial));
+            Node solution = search(initial);
+            puzzles[i].solve(doPrint, solution);
         }
     }
 
-    public static Node search(Node initial){
+    private static Node search(Node initial){
         Queue<Node> queue = new LinkedList<>();
+        ArrayList<Node> searched = new ArrayList<>();
+
         queue.offer(initial);
 
         while(!queue.isEmpty()){
             Node current = queue.remove();
+            searched.add(current);
+
             if (current.isGoal()) {
+//                System.out.println("Searched size: " + searched.size());
                 return current;
             }
 
@@ -50,6 +55,7 @@ public class TheMain {
                 }
             }
         }
+
         return null;
     }
 }

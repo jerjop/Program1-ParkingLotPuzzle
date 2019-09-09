@@ -219,10 +219,12 @@ public class Puzzle {
 
     public void solve(boolean doPrint, Node solution) {
         System.out.println("========================");
-        System.out.println(initNode.toString());
+//        System.out.println(initNode.toString());
 
         System.out.print("\n\nSOLUTION  of Depth " + solution.getDepth());
-        //System.out.println(" Total Nodes Expanded " + allNodes.size() + "\n");
+
+
+//        System.out.println(" Total Nodes Expanded " + allNodes.size() + "\n");
         printSolution(solution);
     }
 
